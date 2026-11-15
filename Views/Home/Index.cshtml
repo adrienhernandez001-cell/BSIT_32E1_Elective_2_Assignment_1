@@ -1,8 +1,41 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model List<BSIT_32E1_Elective_2_Assignment_1.Models.QuizQuestion>
+
+@{
+    ViewData["Title"] = "BSIT 32E1 - Elective 2 Assignment 1";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container py-4">
+    <div class="mb-4 border-bottom pb-3">
+        <h1 class="display-6 fw-bold">BSIT 32E1 — Elective 2: Assignment 1</h1>
+        <p class="text-muted mb-0">ASP.NET Core MVC &amp; Web API Architecture Review</p>
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <span class="fw-semibold">Question @item.Number</span>
+                <span class="badge bg-success">Answer: @item.CorrectOption</span>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title mb-3">@item.QuestionText</h5>
+                <ul class="list-group mb-3">
+                    @foreach (var option in item.Options)
+                    {
+                        bool isCorrect = option.Key == item.CorrectOption;
+                        <li class="list-group-item @(isCorrect ? "list-group-item-success fw-semibold" : "")">
+                            <strong>@option.Key)</strong> @option.Value
+                            @if (isCorrect)
+                            {
+                                <span class="badge bg-success float-end">Correct</span>
+                            }
+                        </li>
+                    }
+                </ul>
+                <div class="alert alert-secondary mb-0 py-2 small">
+                    <strong>Rationale:</strong> @item.Explanation
+                </div>
+            </div>
+        </div>
+    }
 </div>
