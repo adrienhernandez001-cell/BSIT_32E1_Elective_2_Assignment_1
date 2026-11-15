@@ -8,4 +8,10 @@
         public string CorrectOption { get; set; } = string.Empty;
         public string Explanation { get; set; } = string.Empty;
     }
+
+    public class AssignmentViewModel
+    {
+        public string StudentName { get; set; } = string.Empty;
+        public List<QuizQuestion> Questions { get; set; } = new();
+    }
 }
